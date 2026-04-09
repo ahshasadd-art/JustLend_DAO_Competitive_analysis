@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>JustLend DAO 竞品分析报告 · 2026-04-07</title>
+<style>
+:root {
+  --bg: #f4f1eb;
+  --card: rgba(255,255,255,0.88);
+  --text: #1f2430;
+  --muted: #5d6472;
+  --line: #ddd4c8;
+  --primary: #0d6b5f;
+  --primary-2: #184d47;
+  --accent: #bf6a2e;
+  --shadow: 0 18px 40px rgba(31,36,48,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left,rgba(13,107,95,0.10),transparent 28%),
+    radial-gradient(circle at top right,rgba(191,106,46,0.12),transparent 22%),
+    linear-gradient(180deg,#f7f3ee 0%,#efe9df 100%);
+  font-family:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height: 1.75;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: 1480px; margin: 0 auto; padding: 28px 20px 80px; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg,#0e443f 0%,#0d6b5f 52%,#317b63 100%);
+  color: #fff; border-radius: 28px; padding: 36px 36px 30px;
+  box-shadow: 0 24px 50px rgba(13,107,95,0.26);
+  position: relative; overflow: hidden; margin-bottom: 24px;
+}
+.hero::after {
+  content:""; position: absolute; inset: auto -80px -80px auto;
+  width: 260px; height: 260px; border-radius: 999px;
+  background: rgba(255,255,255,0.09); filter: blur(4px);
+}
+.hero h1 {
+  font-size: 36px; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 10px;
+  font-family:"Iowan Old Style","Source Han Serif SC","Songti SC",serif;
+}
+.hero .sub { max-width: 1200px; color: rgba(255,255,255,0.90); font-size: 15px; }
+.meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.meta span {
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
+  color: #f8fffd; padding: 5px 12px; border-radius: 999px; font-size: 13px;
+}
+
+/* Grid */
+.grid { display: grid; grid-template-columns: 264px minmax(0,1fr); gap: 22px; }
+
+/* Sidebar */
+.sidebar {
+  position: sticky; top: 20px; align-self: start;
+  background: rgba(255,255,255,0.78); backdrop-filter: blur(14px);
+  border: 1px solid rgba(221,212,200,0.9);
+  border-radius: 22px; padding: 18px; box-shadow: var(--shadow);
+}
+.sidebar h2 { font-size: 15px; color: var(--primary-2); margin-bottom: 12px; }
+.sidebar nav a {
+  display: block; padding: 7px 10px; border-radius: 10px;
+  color: var(--muted); font-size: 13px; line-height: 1.4;
+}
+.sidebar nav a:hover { background: #f3eee6; text-decoration: none; color: var(--text); }
+.sidebar nav a.lv2 { padding-left: 22px; font-size: 12px; color: #808898; }
+.sidebar nav a.lv2::before { content: "— "; }
+
+/* Main */
+.main { display: flex; flex-direction: column; gap: 20px; }
+
+/* Section */
+.section {
+  background: var(--card); backdrop-filter: blur(14px);
+  border: 1px solid rgba(221,212,200,0.95);
+  border-radius: 24px; box-shadow: var(--shadow); overflow: hidden;
+}
+.sec-head {
+  padding: 18px 24px; border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg,rgba(255,255,255,0.72),rgba(248,244,237,0.72));
+}
+.sec-head h2 { font-size: 20px; color: var(--primary-2); display: flex; align-items: center; gap: 10px; }
+.sec-head .desc { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.sec-body { padding: 20px 24px 26px; }
+
+.sec-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { padding: 11px 13px; border: 1px solid var(--line); vertical-align: top; text-align: left; }
+th { background: #f0ebe2; color: #233; font-weight: 600; }
+tr:nth-child(even) td { background: rgba(255,255,255,0.45); }
+
+/* Tags */
+.tag {
+  display: inline-block; padding: 2px 9px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; margin-right: 4px; margin-bottom: 2px;
+}
+.tag-aave     { background: #e8eafe; color: #3a4ad4; }
+.tag-compound { background: #e8f4ea; color: #2a6e3a; }
+.tag-spark    { background: #fff0e0; color: #a05a10; }
+.tag-venus      { background: #f4e8fe; color: #7030b0; }
+.tag-venus-flux { background: #2d1b4e; color: #c084fc; }
+.tag-lista    { background: #fde8f0; color: #b0205a; }
+.tag-morpho   { background: #ede8fe; color: #6b21a8; }
+
+/* Lightbox */
+.img-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.45em;
+  padding: 0 0.55em;
+  min-height: 1.55em;
+  font-size: 11px;
+  line-height: inherit;
+  font-weight: 600;
+  font-family: inherit;
+  color: #7030b0;
+  background: rgba(244,232,254,0.12);
+  border: 1px solid #c084fc;
+  border-radius: 0.45em;
+  cursor: pointer;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.img-trigger:hover { background: #f4e8fe; text-decoration: none; }
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 9999; align-items: center; justify-content: center; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 90vw; max-height: 88vh; border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
+.lightbox-carousel-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 72px;
+  gap: 0 !important;
+  overflow: visible;
+  pointer-events: none;
+}
+.lightbox-carousel {
+  pointer-events: none;
+}
+.lightbox-carousel-track img {
+  display: block;
+  pointer-events: auto;
+}
+.lightbox-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.22) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  backdrop-filter: blur(6px);
+  pointer-events: auto;
+}
+.lightbox-carousel-nav.prev { left: 16px; }
+.lightbox-carousel-nav.next { right: 16px; }
+.lightbox-carousel-dots {
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+/* Status pills */
+.pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.pill-ok   { background: #d4f0dc; color: #1a6e35; }
+.pill-warn { background: #fff0d4; color: #a06010; }
+.pill-no   { background: #fde0e0; color: #9e2020; }
+
+/* Priority tags for suggest column */
+.pri { display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-right: 5px; vertical-align: middle; flex-shrink: 0; }
+.pri-now  { background: #e8f4fd; color: #1565c0; border: 1px solid #90caf9; }
+.pri-mid  { background: #f3f0fd; color: #5e35b1; border: 1px solid #ce93d8; }
+.pri-eval { background: #f5f5f5; color: #757575; border: 1px solid #bdbdbd; }
+.gap-summary { font-size: 12px; color: #666; background: #f9f7f2; border-left: 3px solid #c8b89a; padding: 7px 10px; border-radius: 0 4px 4px 0; margin-bottom: 12px; line-height: 1.6; }
+.pri-list { list-style: none; padding: 0; margin: 0; }
+.pri-list li { display: flex; align-items: flex-start; gap: 0; margin-bottom: 8px; font-size: 13px; line-height: 1.5; }
+.pri-list li .pri { margin-top: 1px; }
+
+/* Kicker */
+.kicker {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--accent); margin-bottom: 10px; font-weight: 700;
+}
+
+/* Info boxes */
+.infobox { border-radius: 12px; padding: 13px 16px; font-size: 13px; margin-bottom: 16px; }
+.infobox.amber { background: #f8ead7; border: 1px solid #e5c8a0; }
+.infobox.green { background: #e1f2e6; border: 1px solid #a8d8b8; }
+.infobox.blue  { background: #dff2f1; border: 1px solid #b0dcd9; }
+
+/* Module block */
+.module-block { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-bottom: 20px; }
+.module-block:last-child { margin-bottom: 0; }
+.module-title {
+  background: linear-gradient(90deg, var(--primary-2), #1a6b60);
+  color: #fff; padding: 13px 18px; font-size: 16px; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+}
+.module-meta { margin-left: auto; font-size: 12px; opacity: 0.8; font-weight: 400; }
+
+/* Compare grid */
+.compare-grid { display: grid; grid-template-columns: 1fr 1.15fr 1fr; }
+.compare-col { padding: 16px 18px; border-right: 1px solid var(--line); }
+.compare-col:last-child { border-right: none; }
+.compare-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.compare-col.jl h4     { color: var(--primary-2); }
+.compare-col.comp h4   { color: #444; }
+.compare-col.suggest h4 { color: var(--accent); }
+.compare-col.jl     { background: rgba(13,107,95,0.04); }
+.compare-col.suggest { background: rgba(191,106,46,0.04); }
+.compare-col ul { padding-left: 16px; font-size: 13px; }
+.compare-col ul li { margin-bottom: 5px; }
+.compare-col .comp-item { font-size: 13px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed var(--line); }
+.compare-col .comp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+/* Feature cards Section 3 */
+.feat-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.feat-card { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: rgba(255,255,255,0.76); }
+.feat-card h3 { font-size: 15px; color: var(--primary-2); margin: 6px 0 12px; }
+.feat-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; margin-top: 10px; }
+.feat-card p { font-size: 13px; }
+.feat-card ul { font-size: 13px; padding-left: 16px; }
+.feat-card ul li { margin-bottom: 3px; }
+.adopt-yes     { color: #1a7a35; font-weight: 600; }
+.adopt-partial { color: #a06010; font-weight: 600; }
+.adopt-no      { color: #9e2020; font-weight: 600; }
+
+/* Priority table */
+.p-badge { display: inline-block; padding: 2px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+.p-badge.p0 { background: #fde0e0; color: #9e2020; }
+.p-badge.p1 { background: #fff0d4; color: #8c5a00; }
+.p-badge.p2 { background: #d4f0dc; color: #1a5e2a; }
+tr.rp0 td:first-child { border-left: 4px solid #d64040; }
+tr.rp1 td:first-child { border-left: 4px solid #e08020; }
+tr.rp2 td:first-child { border-left: 4px solid #2d9c5a; }
+
+/* Protocol section divider */
+.proto-divider { display: flex; align-items: center; gap: 12px; margin: 24px 0 14px; }
+.proto-divider hr { flex: 1; border: none; border-top: 1px solid var(--line); }
+
+@media(max-width:960px){
+  .grid { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .feat-grid { grid-template-columns: 1fr; }
+}
+
+/* 导航激活态 */
+.sidebar nav a.active {
+  background: rgba(13,107,95,0.10);
+  color: var(--primary-2);
+  font-weight: 600;
+}
+.sidebar nav a.lv2.active { color: var(--primary); }
+
+/* S2 comp-item 视觉优化 */
+.compare-col .comp-item {
+  background: rgba(248,244,237,0.55);
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: none;
+  border-bottom: 1px dashed var(--line);
+}
+.compare-col .comp-item:last-child {
+  border-bottom: none;
+}
+.compare-col .comp-item .tag {
+  display: block;
+  width: fit-content;
+  margin-bottom: 5px;
+}
+.compare-col .comp-item strong {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text);
+  margin-bottom: 2px;
+  margin-top: 0;
+  line-height: 1.4;
+}
+
+/* S3 feat-card h3 顶部留出空间（无 tag 后直接开头） */
+.feat-card h3 { margin-top: 0; }
+
+/* S2 竞品建议列 样式强化 */
+.compare-col.suggest ul li { margin-bottom: 7px; }
+.compare-col.suggest ul li::marker { color: var(--accent); }
+
+/* Executive summary blocks */
+.section-summary,
+.priority-top {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.summary-card,
+.priority-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: linear-gradient(180deg,rgba(255,255,255,0.94),rgba(248,244,237,0.92));
+}
+.summary-card strong,
+.priority-card strong {
+  display: block;
+  font-size: 14px;
+  color: var(--primary-2);
+  margin-bottom: 6px;
+}
+.summary-card p,
+.priority-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* Compact content cards */
+.feat-card.compact,
+.roadmap-card {
+  padding: 16px;
+}
+.feat-card.compact h3,
+.roadmap-card h3 {
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+.decision-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.mini-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: #f3eee6;
+  color: var(--muted);
+}
+.mini-badge.hot  { background: #dff2f1; color: var(--primary-2); }
+.mini-badge.mid  { background: #fff0d4; color: #8c5a00; }
+.mini-badge.long { background: #efe8fb; color: #6b21a8; }
+.brief-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.brief-list li {
+  font-size: 13px;
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+.brief-list li:last-child {
+  margin-bottom: 0;
+}
+.brief-list strong {
+  color: var(--primary-2);
+}
+
+/* Compact priority table */
+.compact-table {
+  table-layout: fixed;
+}
+.compact-table th,
+.compact-table td {
+  padding: 10px 11px;
+}
+.compact-table td {
+  line-height: 1.6;
+}
+
+/* Secondary backlog */
+.backlog-list {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+}
+.backlog-item {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.62);
+}
+.backlog-item strong {
+  display: block;
+  font-size: 13px;
+  color: var(--primary-2);
+  margin-bottom: 4px;
+}
+.backlog-item p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Roadmap label */
+.roadmap-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+@media(max-width:960px){
+  .section-summary,
+  .priority-top,
+  .backlog-list {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>JustLend DAO 竞品分析报告</h1>
+  <p class="sub">对标 Aave V3 / Aave Pro (V4) / Compound V3 / SparkLend / Venus Core / Venus Flux / Lista DAO / Morpho，聚焦前端产品层能力，输出同模块横向对比、差异功能梳理与可落地优先级路线图。</p>
+  <div class="meta">
+    <span>日期：2026-04-07</span>
+    <span>版本号：V2.5</span>
+    <span>调研范围：以前端产品层和用户体验为主，补充少量与路线图直接相关的协议层能力判断</span>
+    <span>竞品：Aave V3 · Aave Pro (V4) · Compound V3 · SparkLend · Venus Core · Venus Flux · Lista DAO · Morpho</span>
+  </div>
+</div>
+
+<div class="grid">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>目录</h2>
+  <nav>
+    <a href="#s1">一、竞品基础信息</a>
+    <a href="#s2">二、同模块竞品分析</a>
+    <a class="lv2" href="#s2-lending">借贷市场</a>
+    <a class="lv2" href="#s2-staking">质押模块</a>
+    <a class="lv2" href="#s2-governance">DAO 治理</a>
+    <a class="lv2" href="#s2-dashboard">Dashboard</a>
+    <a class="lv2" href="#s2-risk">风险提示 / 通知</a>
+    <a href="#s3">三、差异功能竞品分析</a>
+    <a class="lv2" href="#s3-aave-v3">Aave V3 差异功能</a>
+    <a class="lv2" href="#s3-aave-pro">Aave Pro (V4) 差异功能</a>
+    <a class="lv2" href="#s3-compound">Compound V3 差异功能</a>
+    <a class="lv2" href="#s3-spark">SparkLend 差异功能</a>
+    <a class="lv2" href="#s3-venus-core">Venus Core 差异功能</a>
+    <a class="lv2" href="#s3-venus-flux">Venus Flux 差异功能</a>
+    <a class="lv2" href="#s3-lista">Lista 差异功能</a>
+    <a class="lv2" href="#s3-morpho">Morpho 差异功能</a>
+    <a href="#s4">四、总结</a>
+    <a href="#s5">五、未来拓展</a>
+    <a class="lv2" href="#s5-protocol">协议层能力储备</a>
+    <a class="lv2" href="#s5-product">产品形态演进</a>
+    <a class="lv2" href="#s5-infra">基础设施依赖</a>
+  </nav>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ===== S1 ===== -->
+<div class="section" id="s1">
+  <div class="sec-head">
+    <h2><span class="sec-num">1</span>竞品基础信息</h2>
+    <div class="desc">数据来源：各协议官网、官方文档、官方博客、治理论坛。</div>
+  </div>
+  <div class="sec-body">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:130px">协议</th>
+          <th style="width:320px">当前版本</th>
+          <th style="width:200px">主要链</th>
+          <th>官网</th>
+          <th>官方文档</th>
+          <th>数据参考来源</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>JustLend DAO</strong></td>
+          <td>SBM V1（持续迭代）</td>
+          <td>TRON</td>
+          <td><a href="https://justlend.org" target="_blank">justlend.org</a></td>
+          <td><a href="https://docs.justlend.org" target="_blank">docs.justlend.org</a></td>
+          <td><a href="https://support.justlend.org" target="_blank">support.justlend.org</a></td>
+        </tr>
+        <tr>
+          <td><strong>Aave V3</strong></td>
+          <td>V3（主流量版本，多链广泛部署）</td>
+          <td>以太坊、Polygon、Arbitrum、Base、Optimism 等</td>
+          <td><a href="https://app.aave.com" target="_blank">app.aave.com</a></td>
+          <td><a href="https://aave.com/docs" target="_blank">aave.com/docs</a></td>
+          <td><a href="https://governance.aave.com" target="_blank">治理论坛</a> · DeFiLlama</td>
+        </tr>
+        <tr>
+          <td><strong>Aave Pro(V4)</strong></td>
+          <td>V4（Unified Liquidity Layer + Hub & Spoke）</td>
+          <td>以太坊（Pro 版本）</td>
+          <td><a href="https://pro.aave.com" target="_blank">pro.aave.com</a></td>
+          <td><a href="https://aave.com/docs" target="_blank">aave.com/docs</a></td>
+          <td><a href="https://governance.aave.com" target="_blank">治理论坛</a> · Aave 官方博客</td>
+        </tr>
+        <tr>
+          <td><strong>Compound</strong></td>
+          <td>V3（Comet）</td>
+          <td>以太坊、Base、Arbitrum 等多链</td>
+          <td><a href="https://compound.finance" target="_blank">compound.finance</a></td>
+          <td><a href="https://docs.compound.finance" target="_blank">docs.compound.finance</a></td>
+          <td><a href="https://app.compound.finance" target="_blank">app.compound.finance</a> · <a href="https://www.comp.xyz" target="_blank">治理论坛</a></td>
+        </tr>
+        <tr>
+          <td><strong>SparkLend</strong></td>
+          <td>SparkLend V1 + Spark Liquidity Layer（Sky 生态借贷子协议，原 MakerDAO）</td>
+          <td>以太坊为主，Spark Liquidity Layer 延伸至 Base</td>
+          <td><a href="https://spark.fi" target="_blank">spark.fi</a></td>
+          <td><a href="https://docs.spark.fi" target="_blank">docs.spark.fi</a></td>
+          <td><a href="https://data.spark.fi" target="_blank">data.spark.fi（Data Hub）</a> · <a href="https://blockanalitica.substack.com" target="_blank">Block Analitica</a></td>
+        </tr>
+        <tr>
+          <td><strong>Venus Core</strong></td>
+          <td>V4（经典借贷，含 E-Mode、一键循环杠杆、Intrinsic APY、Port 迁移向导）</td>
+          <td>BNB Chain 为主，已扩展至以太坊、Arbitrum、opBNB</td>
+          <td><a href="https://venus.io" target="_blank">venus.io</a></td>
+          <td><a href="https://docs-v4.venus.io" target="_blank">docs-v4.venus.io</a></td>
+          <td><a href="https://messari.io/report/state-of-venus-q3-2025" target="_blank">Messari Q3 2025</a> · <a href="https://community.venus.io" target="_blank">治理论坛</a></td>
+        </tr>
+        <tr>
+          <td><strong>Venus Flux</strong></td>
+          <td>统一流动性层（与 Fluid 合作，2026年2月26日上线；高资本效率借贷 + 内置 DEX + Smart Collateral）</td>
+          <td>BNB Chain</td>
+          <td><a href="https://venus.io" target="_blank">venus.io/flux</a></td>
+          <td><a href="https://docs-v4.venus.io" target="_blank">docs-v4.venus.io</a></td>
+          <td><a href="https://beincrypto.com/venus-flux-unified-liquidity-layer/" target="_blank">BeinCrypto 报道</a> · <a href="https://community.venus.io" target="_blank">治理论坛</a></td>
+        </tr>
+        <tr>
+          <td><strong>Lista DAO</strong></td>
+          <td>Lista Lending 2.0（Smart Lending）</td>
+          <td>BNB Chain</td>
+          <td><a href="https://lista.org" target="_blank">lista.org</a></td>
+          <td><a href="https://docs.bsc.lista.org" target="_blank">docs.bsc.lista.org</a></td>
+          <td><a href="https://blog.lista.org" target="_blank">blog.lista.org</a> · <a href="https://decrypt.co/355647" target="_blank">Decrypt 年度报告</a></td>
+        </tr>
+        <tr>
+          <td><strong>Morpho</strong></td>
+          <td>Morpho Blue（底层借贷协议）+ MetaMorpho Vaults（策展金库）</td>
+          <td>以太坊、Base（Base 上 TVL 超 3.2 亿美元）</td>
+          <td><a href="https://app.morpho.org" target="_blank">app.morpho.org</a></td>
+          <td><a href="https://docs.morpho.org" target="_blank">docs.morpho.org</a></td>
+          <td>Morpho 官方博客 · DeFiLlama · The Block</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== S2 ===== -->
+<div class="section" id="s2">
+  <div class="sec-head">
+    <h2><span class="sec-num">2</span>同模块竞品分析</h2>
+    <div class="desc">仅纳入拥有对应模块的竞品进行横向对比。每个模块展示：JustLend 现状 · 竞品现状 · 竞品优势 · JustLend 迭代建议（三列并排）。</div>
+  </div>
+  <div class="sec-body">
+
+    <!-- 2.1 借贷市场 -->
+    <div class="module-block" id="s2-lending">
+      <div class="module-title">
+        📊 2.1 借贷市场
+        <span class="module-meta">参与竞品：Aave V3 · Aave Pro (V4) · Compound V3 · SparkLend · Venus Core · Venus Flux · Lista DAO · Morpho</span>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-col jl">
+          <h4>JustLend 现状</h4>
+          <ul>
+            <li>完整借贷流程：Supply / Borrow / Repay / Withdraw</li>
+            <li>资产列表展示 APY、利用率、流动性</li>
+            <li>资产详情页展示协议参数</li>
+            <li>抵押开关（是否将资产作为抵押品）</li>
+            <li><span class="pill pill-warn">偏弱</span> 进度条已有渐变色（绿→红），风险值数字高风险时变红，但超出安全阈值时缺少动态文字警告及建议操作引导（补多少/还多少）</li>
+            <li><span class="pill pill-no">缺失</span> 无市场分类/资产标签体系</li>
+            <li><span class="pill pill-no">缺失</span> 无批量/多步合并操作能力</li>
+            <li><span class="pill pill-no">缺失</span> 无一键循环杠杆</li>
+            <li><span class="pill pill-no">缺失</span> 无抵押品还款</li>
+            <li><span class="pill pill-no">缺失</span> 无抵押品换仓</li>
+            <li><span class="pill pill-no">缺失</span> 无债务换仓</li>
+          </ul>
+        </div>
+        <div class="compare-col comp">
+          <h4>竞品现状</h4>
+          <div class="comp-item">
+            <span class="tag tag-aave">Aave V3</span>
+            <strong>E-Mode 效率模式 + 隔离模式</strong>
+            E-Mode 支持同组资产更高 LTV（稳定币组最高 93–97%）；隔离模式限制新资产风险蔓延；Supply/Borrow Cap 接近程度界面可见。<span class="img-trigger" onclick="document.getElementById('lb-aave-v3-lending').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-aave">Aave Pro (V4)</span>
+            <strong>Swap 套件 + 健康因子颜色预警</strong>
+            未来支持抵押品换仓、债务换仓、抵押品直接还款；交易弹窗实时展示健康因子（黄/红分级警告）；Position Manager 策略授权执行。
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-compound">Compound V3</span>
+            <strong>极简市场语义 + 批量调用</strong>
+            清晰区分 Base Asset（生息+借款）与 Collateral Asset（仅抵押）；Bulker 批量调用，Supply + Approve 合并为单次签名（合约调用，且需要给 Bulker 前置授权）。<span class="img-trigger" onclick="document.getElementById('lb-compound-v3-lending').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-spark">SparkLend</span>
+            <strong>Sky 生态借贷 + USDS 低利率</strong>
+            主稳定币 USDS（DAI 升级版）；Save 与 Borrow 分入口；单页 Dashboard 原地操作。
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-venus">Venus Core</span>
+            <strong>一键循环杠杆 + 抵押品还款 + E-Mode</strong>
+            Boost 一键循环（倍数滑杆 + 实时健康因子预览）；抵押品直接还款；E-Mode 分层提升 LTV；净收益展示。<span class="img-trigger" onclick="document.getElementById('lb-venus-core').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-venus-flux">Venus Flux</span>
+            <strong>Smart Collateral + 内置 Swap + 一键杠杆</strong>
+            Smart Collateral（抵押品同时做 DEX 流动性，赚取双重收益）；站内兑换无需跳转；Multiply 一键杠杆。<span class="img-trigger" onclick="document.getElementById('lb-venus-flux').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-lista">Lista DAO</span>
+            <strong>固定利率借款 + LP 双收益展示</strong>
+            固定利率/固定期限借款（7/14/30 天）；LP 抵押品同时展示抵押价值与做市费率；借款利率上限（30% APR）前端可见。<span class="img-trigger" onclick="document.getElementById('lb-lista').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-morpho">Morpho</span>
+            <strong>策展金库透明度 + Bundler 批量操作</strong>
+            每个市场由五参数唯一定义（借款资产、抵押资产、预言机、利率模型、LLTV）；策展金库展示策展人、底层市场分配权重与收益贡献；Bundler 批量交易减少签名次数。
+          </div>
+        </div>
+        <div class="compare-col suggest">
+          <h4>迭代建议</h4>
+          <p class="gap-summary">核心差距：缺乏高级操作工具（循环杠杆、换仓、抵押品还款），用户完成复杂策略须多步手动操作，且风险告警仅有视觉提示，无行动引导。</p>
+          <ul class="pri-list">
+            <li><span class="pri pri-now">优先</span>风险阈值触发时补充动态文字警告 + 操作引导（"需补 X TRX 恢复安全"，直达补仓入口）</li>
+            <li><span class="pri pri-now">优先</span>抵押品直接还款：还款弹窗内选抵押品 → 对接 SunSwap 单步完成，对风险告急用户价值极高</li>
+            <li><span class="pri pri-mid">中期</span>一键循环杠杆：先做向导式多步引导（存款→借款→再存款），中期评估 Router 合并执行</li>
+            <li><span class="pri pri-mid">中期</span>抵押品换仓 / 债务换仓</li>
+            <li><span class="pri pri-mid">中期</span>借款弹窗增加安全缓冲滑杆（设定目标 Risk Value → 反算可借额度）</li>
+            <li><span class="pri pri-eval">评估</span>批量操作（多步合并为单次签名，参考 Compound Bulker）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.2 质押 -->
+    <div class="module-block" id="s2-staking">
+      <div class="module-title">
+        🔒 2.2 质押模块
+        <span class="module-meta">参与竞品：Aave V3 · Aave Pro (V4) · Venus Core · Lista DAO · SparkLend（Compound V3 无质押模块，Morpho 无原生质押代币机制）</span>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-col jl">
+          <h4>JustLend 现状</h4>
+          <ul>
+            <li>sTRX 质押：Stake TRX → sTRX</li>
+            <li>展示质押 APY、总质押量、提取队列</li>
+            <li><span class="pill pill-warn">偏弱</span> 收益来源未拆解（节点奖励 vs 协议激励）</li>
+            <li><span class="pill pill-no">缺失</span> 无质押前收益变化预览</li>
+            <li><span class="pill pill-no">缺失</span> 质押仅展示 APY，无多元权益说明（注：sTRX 质押为 TRX → sTRX 的节点收益机制，与治理投票无关；JustLend 治理由 JST 持有者参与，二者为独立体系）</li>
+            <li><span class="pill pill-no">缺失</span> 无底层资产去向可视化</li>
+          </ul>
+        </div>
+        <div class="compare-col comp">
+          <h4>竞品现状</h4>
+          <div class="comp-item">
+            <span class="tag tag-aave">Aave V3 / Aave Pro (V4)</span>
+            V3 Safety Module：质押 AAVE → stkAAVE，单一资产覆盖全协议风险，出现坏账时 AAVE 持有者承担最高 30% 的 Slashing 损失。V4 Umbrella：升级为多资产质押（aToken 等），每种资产仅保护其对应市场，风险精准挂钩、不再由 AAVE 单独兜底全局。两种模式均在界面内联展示风险说明与收益来源拆解。<span class="img-trigger" onclick="document.getElementById('lb-aave-staking').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-venus">Venus Core</span>
+            锁仓 XVS 同时获得：① 质押收益 ② 治理投票权 ③ Venus Prime 权益资格，三重权益一页清晰展示。<span class="img-trigger" onclick="document.getElementById('lb-venus-core-staking').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-lista">Lista DAO</span>
+            锁仓 LISTA → veLISTA；锁仓时长与权益正比（可视化权重曲线）；涵盖收益加成 / 治理权重 / 协议费分配三类权益。<span class="img-trigger" onclick="document.getElementById('lb-lista-staking').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-spark">SparkLend</span>
+            SPK 质押独立入口；质押可参与治理和收益分配；预挖进度在 Data Hub 透明可查。<span class="img-trigger" onclick="document.getElementById('lb-spark-staking').classList.add('active')">查看图片</span>
+          </div>
+        </div>
+        <div class="compare-col suggest">
+          <h4>迭代建议</h4>
+          <p class="gap-summary">核心差距：质押信息密度低，用户感知不到收益来源与底层资产流向，决策依据不足。</p>
+          <ul class="pri-list">
+            <li><span class="pri pri-now">优先</span>收益来源拆解：节点奖励占比 vs 协议激励占比，让用户知道钱从哪来</li>
+            <li><span class="pri pri-now">优先</span>质押输入框实时换算年化收益金额（如 "质押 1,000 TRX → 预计年收益 ≈ 62 TRX / $19.6"），APY 百分比转化为具体金额</li>
+            <li><span class="pri pri-mid">中期</span>展示 sTRX 底层节点分配方式与各节点收益明细，提升透明度</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.3 DAO 治理 -->
+    <div class="module-block" id="s2-governance">
+      <div class="module-title">
+        🗳️ 2.3 DAO 治理
+        <span class="module-meta">参与竞品：Aave V3 · Aave Pro (V4) · Compound V3 · SparkLend · Venus Core · Lista DAO · Morpho</span>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-col jl">
+          <h4>JustLend 现状</h4>
+          <ul>
+            <li>提案列表页 + 投票页（基础功能）</li>
+            <li>展示投票状态、赞成/反对票数</li>
+            <li><span class="pill pill-warn">偏弱</span> 治理入口位于顶部主导航，但页面功能较基础，参与感弱</li>
+            <li><span class="pill pill-no">缺失</span> 无投票权委托功能</li>
+            <li><span class="pill pill-no">缺失</span> 无"与我相关提案"筛选</li>
+          </ul>
+        </div>
+        <div class="compare-col comp">
+          <h4>竞品现状</h4>
+          <div class="comp-item">
+            <span class="tag tag-aave">Aave V3 / Aave Pro (V4)</span>
+            提案支持参数 diff 展示；治理委托功能；投票权与 stkAAVE 绑定；历史执行结果可查。
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-compound">Compound V3</span>
+            链下 Snapshot + 链上执行双轨制；COMP 持仓即投票权（低门槛）；治理论坛与链上提案联动。<span class="img-trigger" onclick="document.getElementById('lb-compound-governance').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-spark">SparkLend</span>
+            SPK 治理独立入口；支持委托；Data Hub 展示治理代币分布与预挖进度。
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-venus">Venus Core</span>
+            投票权由 XVS Vault 锁仓量决定；提案涉及市场参数时展示受影响市场列表。
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-lista">Lista DAO</span>
+            veLISTA 锁仓时长决定投票权重（可视化权重曲线）；治理与协议费分配直接挂钩，形成经济激励。<span class="img-trigger" onclick="document.getElementById('lb-lista-governance').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-morpho">Morpho</span>
+            协议参数由 MORPHO 持有者投票决定；MetaMorpho 金库参数由策展人自主配置，无需全体治理投票；社区论坛公开发布提案影响分析报告。
+          </div>
+        </div>
+        <div class="compare-col suggest">
+          <h4>迭代建议</h4>
+          <p class="gap-summary">核心差距：治理功能停留在"列表+投票"基础层，用户无法感知"这个提案跟我有什么关系"，参与动力弱。</p>
+          <ul class="pri-list">
+            <li><span class="pri pri-now">优先</span>治理参与历史记录入口</li>
+            <li><span class="pri pri-now">优先</span>投票权委托功能，降低散户参与门槛</li>
+            <li><span class="pri pri-mid">中期</span>"与我相关提案"筛选（按用户持仓资产自动匹配）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.4 Dashboard -->
+    <div class="module-block" id="s2-dashboard">
+      <div class="module-title">
+        🖥️ 2.4 Dashboard / 仓位总览
+        <span class="module-meta">参与竞品：Aave V3 · Aave Pro (V4) · Compound V3 · SparkLend · Venus Core · Morpho</span>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-col jl">
+          <h4>JustLend 现状</h4>
+          <ul>
+            <li>借贷 / sTRX / Energy Rental / 治理资产入口分散</li>
+            <li>用户需在多个页面切换才能看清全局</li>
+            <li><span class="pill pill-no">缺失</span> 无统一仓位总览页</li>
+            <li><span class="pill pill-no">缺失</span> 无跨模块快速操作入口聚合</li>
+            <li><span class="pill pill-no">缺失</span> 无账户级历史收益走势图</li>
+          </ul>
+        </div>
+        <div class="compare-col comp">
+          <h4>竞品现状</h4>
+          <div class="comp-item">
+            <span class="tag tag-aave">Aave V3</span>
+            存款 / 借款 / Health Factor / Net APY 一屏展示；模态框内原地操作，无需跳转；多链资产按网络分组。<span class="img-trigger" onclick="document.getElementById('lb-dash-aavev3').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-aave">Aave Pro (V4)</span>
+            顶部常驻净账户价值与健康因子；Swap 套件内嵌 Dashboard；历史交易记录 Tab。<span class="img-trigger" onclick="document.getElementById('lb-dash-aavev4').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-venus">Venus Core</span>
+            展示净收益率（扣除借款成本）；独立交易记录 Tab；Prime 权益状态可见。<span class="img-trigger" onclick="document.getElementById('lb-dash-venus').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-compound">Compound V3</span>
+            存款 + 借款整合于一面板，认知负担低。<span class="img-trigger" onclick="document.getElementById('lb-dash-compound').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-morpho">Morpho</span>
+            Portfolio 页聚合所有 Vault 头寸与直接借贷头寸；每个 Vault 可展开查看底层市场分配详情；奖励分项列出，一键 Claim。<span class="img-trigger" onclick="document.getElementById('lb-dash-morpho').classList.add('active')">查看图片</span>
+          </div>
+        </div>
+        <div class="compare-col suggest">
+          <h4>迭代建议</h4>
+          <p class="gap-summary">核心差距：无统一仓位总览，用户需跨多页才能看清全局，风险与收益状态长期不可见。</p>
+          <ul class="pri-list">
+            <li><span class="pri pri-now">优先</span>新增统一 Dashboard：合并展示借贷、sTRX 质押、Energy Rental 三类仓位，健康因子顶部常驻</li>
+            <li><span class="pri pri-now">优先</span>净收益率展示（存款收益 + sTRX 收益 − 借款成本），让用户看到真实盈亏</li>
+            <li><span class="pri pri-mid">中期</span>Dashboard 内快捷操作直达（补仓 / 还款 / 租 Energy），减少页面跳转</li>
+            <li><span class="pri pri-mid">中期</span>Dashboard 内支持直接弹窗操作（JustLend 借贷页已支持弹窗，Dashboard 页尚未集成，需将操作入口延伸至总览页）</li>
+            <li><span class="pri pri-eval">评估</span>账户级历史收益走势图（7d / 30d / All）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.5 风险提示/通知 -->
+    <div class="module-block" id="s2-risk">
+      <div class="module-title">
+        🔔 2.5 风险提示 / 邮件通知
+        <span class="module-meta">参与竞品：Aave V3 · Aave Pro (V4) · Venus Core · Compound V3 · Lista DAO · Morpho（SparkLend 相对基础）</span>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-col jl">
+          <h4>JustLend 现状</h4>
+          <ul>
+            <li><span class="pill pill-warn">有但弱</span> Risk Alert（设置页中配置，入口分散）</li>
+            <li><span class="pill pill-warn">有但弱</span> Risk Value 区间说明（界面展示弱）</li>
+            <li><span class="pill pill-warn">有但弱</span> Liquidation Tool（独立工具页，未嵌入主流程）</li>
+            <li><span class="pill pill-warn">有但弱</span> 交易弹窗展示风险值前后变化（X→Y 带进度条），进度条已有渐变色、风险值数字高风险时变红，但超出安全阈值时缺少动态文字预警，提醒触发后也无建议动作引导（补仓/还款操作直达）</li>
+            <li><span class="pill pill-no">缺失</span> 三者无统一安全中心入口</li>
+            <li><span class="pill pill-no">缺失</span> 提醒触发后无建议动作引导</li>
+            <li><span class="pill pill-no">缺失</span> 无用户自定义价格预警阈值</li>
+          </ul>
+        </div>
+        <div class="compare-col comp">
+          <h4>竞品现状</h4>
+          <div class="comp-item">
+            <span class="tag tag-aave">Aave V3 / Aave Pro (V4)</span>
+            交易弹窗实时展示 Health Factor（黄/红分级警告）；邮件通知 HF 阈值告警；关键参数旁 Tooltip 内联说明；Supply/Borrow Cap 接近上限时界面显著提示。<span class="img-trigger" onclick="document.getElementById('lb-aave-risk').classList.add('active')">查看图片</span>
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-venus">Venus Core</span>
+            市场风险暂停状态前端有明显标识；受影响资产列表清晰展示；Gauntlet 风险监控状态公开可查。
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-compound">Compound V3</span>
+            Gauntlet 24×7 风险监控；风险参数前端可查；Supply/Borrow Cap 接近程度资产详情可见。
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-lista">Lista DAO</span>
+            借款利率上限（30% APR）前端展示，当前利率与上限距离可见；价格剧烈波动时熔断器状态有前端提示。
+          </div>
+          <div class="comp-item">
+            <span class="tag tag-morpho">Morpho</span>
+            每个市场展示 LLTV 与当前 LTV，距清算线可见；Vault 详情页直链第三方风险报告（Gauntlet / B.Protocol）。
+          </div>
+        </div>
+        <div class="compare-col suggest">
+          <h4>迭代建议</h4>
+          <p class="gap-summary">核心差距：风险工具分散三处、无主动推送，告警触发后用户不知道该做什么。</p>
+          <ul class="pri-list">
+            <li><span class="pri pri-now">优先</span>告警触发时补充动态文字预警（"风险值已超安全线"）+ 操作引导（需补 X TRX / 还 Y USDT，直达入口）</li>
+            <li><span class="pri pri-now">优先</span>Risk Alert / Risk Value / Liquidation Tool 整合为统一安全中心，一个入口管理全部</li>
+            <li><span class="pri pri-mid">中期</span>增加邮件 / 站内信主动通知渠道，风险事件离线也能触达</li>
+            <li><span class="pri pri-mid">中期</span>关键参数旁（抵押率、借款上限）加 Tooltip 内联说明，减少用户跳文档</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== S3 ===== -->
+<div class="section" id="s3">
+  <div class="sec-head">
+    <h2><span class="sec-num">3</span>差异功能竞品分析</h2>
+    <div class="desc">这一节只保留最有决策价值的信息：竞品怎么做、为什么值得看、JustLend 当前应不应该跟。</div>
+  </div>
+  <div class="sec-body">
+
+    <!-- Aave V3 -->
+    <div id="s3-aave-v3">
+      <div class="proto-divider"><hr/><span class="tag tag-aave" style="font-size:13px;padding:4px 14px">Aave V3</span><hr/></div>
+      <div class="feat-grid">
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-no">本轮不做</span>
+            <span class="mini-badge long">协议层能力</span>
+          </div>
+          <h3>E-Mode 效率模式（Efficiency Mode）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把高相关资产分组，提高同组借款空间，并用隔离模式控制新资产风险。</li>
+            <li><strong>价值：</strong>对稳定币互借、LST 循环这类策略场景，资金效率提升最明显。</li>
+            <li><strong>JustLend 建议：</strong>当前先做资产分组展示和预期提示，真正的 E-Mode 留到协议升级窗口。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Aave Pro (V4) -->
+    <div id="s3-aave-pro">
+      <div class="proto-divider"><hr/><span class="tag tag-aave" style="font-size:13px;padding:4px 14px">Aave Pro (V4)</span><hr/></div>
+      <div class="infobox blue" style="margin:0 0 16px;">
+        <strong>版本说明：</strong>Aave V4 已于 2026 年 3 月 30 日上线；这里仅保留对 JustLend 最有借鉴价值的前端与交互能力。
+      </div>
+      <div class="feat-grid">
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可优先借鉴</span>
+            <span class="mini-badge hot">交易闭环</span>
+          </div>
+          <h3>Swap 功能（抵押品换仓 / 债务换仓 / 意图型限价单）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把抵押品换仓、债务换仓、还款换资产全部收进借贷流程，用户不用跳外部 DEX。</li>
+            <li><strong>价值：</strong>最直接缩短“调仓、还款、救仓”路径，对完成率和风险修复都很关键。</li>
+            <li><strong>JustLend 建议：</strong>先做 <strong>Repay with Collateral</strong>，再扩展 Debt Swap 和 Collateral Swap；限价单放后面。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">中期评估</span>
+            <span class="mini-badge mid">机构向</span>
+          </div>
+          <h3>Position Manager</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>允许用户授权外部 Manager 代执行调仓、还款和再平衡，并可随时撤销。</li>
+            <li><strong>价值：</strong>更适合机构和高净值用户，不是当前零售体验的第一优先级。</li>
+            <li><strong>JustLend 建议：</strong>短期先做 watch-only 多地址视图，中期再评估授权执行机制。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">分阶段借鉴</span>
+            <span class="mini-badge mid">降门槛</span>
+          </div>
+          <h3>批量交易（Multi-call Batch）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把 Approve、Supply、Repay、Withdraw 等多步操作压成一次确认。</li>
+            <li><strong>价值：</strong>明显减少签名和 Energy 消耗，也降低新手中途放弃率。</li>
+            <li><strong>JustLend 建议：</strong>短期先做向导式多步流，中期再接 Router 合并执行。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可直接借鉴</span>
+            <span class="mini-badge hot">零售体验</span>
+          </div>
+          <h3>收益目标规划器（Aave App 核心功能）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>用目标金额和时间反推收益曲线，并把收益变化实时可见化。</li>
+            <li><strong>价值：</strong>更适合零售用户理解 sTRX 质押这类长期持有型产品。</li>
+            <li><strong>JustLend 建议：</strong>网页端优先在 sTRX 页面落地，先验证体验价值，再考虑 App 化。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Compound V3 -->
+    <div id="s3-compound">
+      <div class="proto-divider"><hr/><span class="tag tag-compound" style="font-size:13px;padding:4px 14px">Compound V3</span><hr/></div>
+      <div class="infobox blue" style="margin:0 0 16px;">
+        <strong>近期动态：</strong>Compound 正把激励集中到核心市场，说明单纯“撒激励”不再是主战场，产品体验和信息表达的重要性在上升。
+      </div>
+      <div class="feat-grid">
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-no">不适用</span>
+            <span class="mini-badge">版本迁移场景</span>
+          </div>
+          <h3>版本迁移引导 Banner（V2 → V3）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>旧版退场时用强提示 Banner 推动用户迁移，避免仓位长期遗留。</li>
+            <li><strong>价值：</strong>只适合存在长期双版本并行的协议。</li>
+            <li><strong>JustLend 建议：</strong>当前历史市场处理方式更直接，这项不构成明显缺口。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可直接借鉴</span>
+            <span class="mini-badge hot">低成本优化</span>
+          </div>
+          <h3>市场资产分类标签（LST / 收益型 / 标准型）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>在资产列表中用标签区分 LST、收益型、标准型资产，并支持筛选。</li>
+            <li><strong>价值：</strong>成本低，但能持续降低理解成本，也方便未来引入更多新资产。</li>
+            <li><strong>JustLend 建议：</strong>先落地稳定币、TRX 原生、BTC·ETH 映射、历史市场四类标签。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SparkLend -->
+    <div id="s3-spark">
+      <div class="proto-divider"><hr/><span class="tag tag-spark" style="font-size:13px;padding:4px 14px">SparkLend</span><hr/></div>
+      <div class="feat-grid">
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可直接借鉴</span>
+            <span class="mini-badge hot">透明度</span>
+          </div>
+          <h3>Savings V2 多资产储蓄金库（含底层资产可视化）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>用多资产金库页展示 APY、TVL、底层资金去向和积分进度。</li>
+            <li><strong>价值：</strong>把“钱去了哪里”讲清楚，对大额用户的信任提升最明显。</li>
+            <li><strong>JustLend 建议：</strong>在 sTRX 页面展示节点分配权重、各节点 APY 贡献和历史走势。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可借鉴</span>
+            <span class="mini-badge mid">品牌公信力</span>
+          </div>
+          <h3>Data Hub 独立数据分析看板<span class="img-trigger" onclick="document.getElementById('lb-spark-datahub').classList.add('active')">查看图片</span></h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把流动性、储蓄、借贷、代币数据抽成独立数据看板，而不是夹在交易页里。</li>
+            <li><strong>价值：</strong>对研究者、媒体和机构更友好，也能提升协议公信力。</li>
+            <li><strong>JustLend 建议：</strong>基于 OpenAPI 先做 Insights，覆盖利用率、清算、sTRX 规模和 Energy 价格趋势。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">中长期评估</span>
+            <span class="mini-badge long">机构化</span>
+          </div>
+          <h3>机构借贷界面（Spark Prime）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把机构用户单独放到专属入口，固定利率、托管、风控与零售界面分开。</li>
+            <li><strong>价值：</strong>能服务大额用户，又不会把零售界面做复杂。</li>
+            <li><strong>JustLend 建议：</strong>短期先做机构看板和多地址只读视图，交易与合规能力后置。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Venus Core -->
+    <div id="s3-venus-core">
+      <div class="proto-divider"><hr/><span class="tag tag-venus" style="font-size:13px;padding:4px 14px">Venus Core</span><hr/></div>
+      <div class="feat-grid">
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">分阶段借鉴</span>
+            <span class="mini-badge mid">策略效率</span>
+          </div>
+          <h3>一键循环杠杆（One-click Looping）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>用户选定目标杠杆后，系统自动完成“存款、借款、再存款”的循环流程。</li>
+            <li><strong>价值：</strong>把原本只属于熟练用户的策略，变成更容易理解和执行的产品能力。</li>
+            <li><strong>JustLend 建议：</strong>先做向导式多步流，中期再评估 Router 合并执行。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">优先借鉴</span>
+            <span class="mini-badge hot">风险修复</span>
+          </div>
+          <h3>抵押品直接还款（Repay with Collateral）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>允许用户直接选择抵押品来偿还债务，系统自动完成兑换和更新仓位。</li>
+            <li><strong>价值：</strong>这是最关键的“救仓”能力，尤其适合风险已进入警戒区的用户。</li>
+            <li><strong>JustLend 建议：</strong>高优先级接入 SunSwap 打通单步还款，不需要改核心借贷合约。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">条件借鉴</span>
+            <span class="mini-badge">迁移运营</span>
+          </div>
+          <h3>跨协议仓位迁移向导（Port）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把外部协议的存款仓位迁移做成三步向导，并展示迁移后的收益差。</li>
+            <li><strong>价值：</strong>在多协议竞争激烈的链上，是很有效的拉新工具。</li>
+            <li><strong>JustLend 建议：</strong>TRON 链外部迁移价值有限，但这套思路可用于历史市场迁移向导。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-no">本轮不做</span>
+            <span class="mini-badge long">协议层能力</span>
+          </div>
+          <h3>E-Mode 效率模式前端入口</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把相关资产分组后提供更高借款空间，并在前端清晰展示模式切换效果。</li>
+            <li><strong>价值：</strong>适合高频策略用户，但本质上依赖协议能力而不是前端能力。</li>
+            <li><strong>JustLend 建议：</strong>先做分组标签与风险说明，真正的 E-Mode 进入模块五。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可直接借鉴</span>
+            <span class="mini-badge hot">收益透明</span>
+          </div>
+          <h3>内在 APY 展示（Intrinsic APY）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>直接展示扣掉借款成本后的净收益率，并拆开收益来源。</li>
+            <li><strong>价值：</strong>把“毛 APY”改成“真实到手收益”，很容易建立信任感。</li>
+            <li><strong>JustLend 建议：</strong>把净收益率做成 Dashboard 核心指标，统一纳入 SBM、sTRX 和 Energy 维度。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Venus Flux -->
+    <div id="s3-venus-flux">
+      <div class="proto-divider"><hr/><span class="tag tag-venus-flux" style="font-size:13px;padding:4px 14px">Venus Flux</span><hr/></div>
+      <div class="feat-grid">
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">中长期评估</span>
+            <span class="mini-badge long">协议联动</span>
+          </div>
+          <h3>Smart Collateral（抵押品双重收益）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>让抵押品在充当担保的同时，还能去 DEX 做市赚取手续费。</li>
+            <li><strong>价值：</strong>资本效率故事很强，但对协议与 DEX 的联动要求也最高。</li>
+            <li><strong>JustLend 建议：</strong>先作为 sTRX 多场景利用的长期研究方向，不进入当前版本。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">分阶段借鉴</span>
+            <span class="mini-badge mid">高阶循环</span>
+          </div>
+          <h3>Multiply（一键循环杠杆，Flux 版）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把循环杠杆和站内 DEX 打通，做到单笔原子执行。</li>
+            <li><strong>价值：</strong>它代表的是“循环产品的更高阶段”，不是第一步就必须达到的形态。</li>
+            <li><strong>JustLend 建议：</strong>先把向导式循环做好，后续再看是否能把兑换进一步收进站内。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可借鉴</span>
+            <span class="mini-badge hot">站内闭环</span>
+          </div>
+          <h3>Native DEX Swap（站内一体化兑换）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把兑换模块嵌进借贷流程内，用户调仓和还款都不必离开站内。</li>
+            <li><strong>价值：</strong>零跳转体验是所有高阶闭环能力的基础。</li>
+            <li><strong>JustLend 建议：</strong>先用 SunSwap API 做轻量版站内兑换，再看更深度的流动性整合。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Lista DAO -->
+    <div id="s3-lista">
+      <div class="proto-divider"><hr/><span class="tag tag-lista" style="font-size:13px;padding:4px 14px">Lista DAO</span><hr/></div>
+      <div class="infobox blue" style="margin:0 0 16px;">
+        <strong>版本说明：</strong>Lista 近一轮重点是把 Smart Lending、内嵌 Swap 和利率风险表达做成一体化体验，适合当作站内闭环参考。
+      </div>
+      <div class="feat-grid">
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">中期储备</span>
+            <span class="mini-badge long">机构需求</span>
+          </div>
+          <h3>固定利率 / 固定期限借款</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>用户借款时就锁定利率和期限，到期前成本不随市场波动。</li>
+            <li><strong>价值：</strong>对机构和策略型用户非常有吸引力，但前提是协议本身支持。</li>
+            <li><strong>JustLend 建议：</strong>列入中期储备，等协议可行性确认后再进入排期。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-no">本轮不做</span>
+            <span class="mini-badge long">新风险池</span>
+          </div>
+          <h3>信用贷（Lista Credit）<span class="img-trigger" onclick="document.getElementById('lb-lista-credit').classList.add('active')">查看图片</span></h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>基于链上行为评分做小额无抵押借贷，并用奖励与惩罚维持还款纪律。</li>
+            <li><strong>价值：</strong>能扩用户面，但本质上是全新的风控赛道。</li>
+            <li><strong>JustLend 建议：</strong>当前不纳入，后续视 TRON 信用基础设施成熟度再看。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可直接借鉴</span>
+            <span class="mini-badge hot">风险表达</span>
+          </div>
+          <h3>借款利率上限前端展示</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>明确展示当前利率、利率上限和熔断状态，让用户知道最坏成本。</li>
+            <li><strong>价值：</strong>改动小，但能显著降低对极端利率的焦虑。</li>
+            <li><strong>JustLend 建议：</strong>若协议有参数边界，直接在借款弹窗中做“当前值 vs 上限值”展示。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可借鉴</span>
+            <span class="mini-badge hot">闭环配套</span>
+          </div>
+          <h3>内嵌 Swap 界面（站内资金流动闭环）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把站内兑换做成借贷和还款的配套入口，不让用户离开当前流程。</li>
+            <li><strong>价值：</strong>它不是锦上添花，而是 Repay with Collateral 的前置能力。</li>
+            <li><strong>JustLend 建议：</strong>和 SunSwap 集成一起推进，优先放在还款和提现场景。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Morpho -->
+    <div id="s3-morpho">
+      <div class="proto-divider"><hr/><span class="tag tag-morpho" style="font-size:13px;padding:4px 14px">Morpho</span><hr/></div>
+      <div class="infobox blue" style="margin:0 0 16px;">
+        <strong>版本说明：</strong>Morpho 更适合作为“专业感前端”的参考样板，它把信息透明、Vault 策展和批量操作都做得很克制清楚。
+      </div>
+      <div class="feat-grid">
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可借鉴</span>
+            <span class="mini-badge hot">资金去向透明</span>
+          </div>
+          <h3>MetaMorpho Vaults（策展金库体系）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把策展人、底层分配权重和 APY 来源拆分全部展示给用户。</li>
+            <li><strong>价值：</strong>专业能力被“产品化”后，用户更容易信任收益产品，而不是只看一个总 APY。</li>
+            <li><strong>JustLend 建议：</strong>直接借鉴到 sTRX 页面，展示节点权重和收益来源拆解。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可借鉴</span>
+            <span class="mini-badge hot">信息清晰</span>
+          </div>
+          <h3>Morpho Blue 市场参数透明展示</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把市场关键参数、验证状态和历史信息完整地放在资产详情页里。</li>
+            <li><strong>价值：</strong>专业用户能快速判断边界，普通用户也不容易误入非核心市场。</li>
+            <li><strong>JustLend 建议：</strong>补齐抵押率、清算阈值、预言机来源和历史市场标签的完整展示。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-ok">可直接借鉴</span>
+            <span class="mini-badge hot">诚实收益</span>
+          </div>
+          <h3>Rewards 与 APY 分层展示</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把基础利率、协议激励和第三方激励分层展示，而不是只给一个总 APY。</li>
+            <li><strong>价值：</strong>收益信息越诚实，用户越不容易因为预期落差流失。</li>
+            <li><strong>JustLend 建议：</strong>把基础利率与激励收益分开，并明确激励结束时间或上限。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">分阶段借鉴</span>
+            <span class="mini-badge mid">降签名</span>
+          </div>
+          <h3>Bundler 批量操作（减少签名次数）</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把多步交易打包成一次签名，并明确告诉用户“原本几步，现在几次确认”。</li>
+            <li><strong>价值：</strong>减少签名次数本身就是体验提升，也能降低 Energy 成本感知。</li>
+            <li><strong>JustLend 建议：</strong>先做清晰的向导式多步流，中期再推进合并执行。</li>
+          </ul>
+        </div>
+
+        <div class="feat-card compact">
+          <div class="decision-row">
+            <span class="pill pill-warn">中长期评估</span>
+            <span class="mini-badge long">机构治理</span>
+          </div>
+          <h3>Vaults V2：机构 KYC 门控 + Curator/Allocator 双角色</h3>
+          <ul class="brief-list">
+            <li><strong>竞品做法：</strong>把机构准入、角色分工和资金分配逻辑放到同一套透明规则里展示。</li>
+            <li><strong>价值：</strong>对未来机构产品和治理透明度都很有参考价值。</li>
+            <li><strong>JustLend 建议：</strong>短期先借鉴角色透明表达，中长期再和机构路线一起评估。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== S4 ===== -->
+<div class="section" id="s4">
+  <div class="sec-head">
+    <h2><span class="sec-num">4</span>总结</h2>
+    <div class="desc">综合第二、三部分，按优先级与投入产出排序，仅保留 JustLend 当前可落地的事项。</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="infobox amber">
+      <strong>排列原则：</strong>优先做高频、见效快、无需改协议的事项；协议层重构和重资产投入不纳入本轮。
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:70px">优先级</th>
+          <th style="width:200px">功能名称</th>
+          <th style="width:130px">参考来源</th>
+          <th style="width:120px">改动量</th>
+          <th style="width:90px">紧迫程度</th>
+          <th>核心价值说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ── P0 · 极高 ── -->
+        <tr class="rp0">
+          <td><span class="p-badge p0">P0</span></td>
+          <td><strong>统一 Dashboard（仓位总控台）</strong></td>
+          <td>Aave Pro</td>
+          <td>中（前端+数据聚合）</td>
+          <td>⚡ 极高</td>
+          <td>把借贷、sTRX、Energy Rental 放到一屏，并提供快捷操作。先解决入口割裂，提升回访和二次操作效率。</td>
+        </tr>
+        <!-- ── P0 · 高 ── -->
+        <tr class="rp0">
+          <td><span class="p-badge p0">P0</span></td>
+          <td><strong>内置 Swap（换仓 / 抵押品还款）</strong></td>
+          <td>Venus Core · Venus Flux</td>
+          <td>中大（外围 DEX/Router 集成）</td>
+          <td>🔥 高</td>
+          <td>围绕 Debt Swap、Collateral Swap、Repay with Collateral 三类场景，打通站内换仓与还款。对接 SunSwap，优先缩短调仓和救仓路径。</td>
+        </tr>
+        <tr class="rp0">
+          <td><span class="p-badge p0">P0</span></td>
+          <td><strong>失败交易恢复 / Energy 修复流</strong></td>
+          <td>JustLend 差异化</td>
+          <td>中（前端+错误码归因+Energy Rental 联动）</td>
+          <td>🔥 高</td>
+          <td>交易失败后直接定位原因；Energy 不足时提示缺口并跳转 Energy Rental。重点是减少掉单。</td>
+        </tr>
+        <tr class="rp0">
+          <td><span class="p-badge p0">P0</span></td>
+          <td><strong>统一安全中心（风险提示升级）</strong></td>
+          <td>Aave · Venus</td>
+          <td>中（前端+通知服务）</td>
+          <td>🔥 高</td>
+          <td>把 Risk Alert、Risk Value 和补仓/还款入口收敛到一处；高风险时支持顶部提示和 TG 报警。重点是降低清算损失。</td>
+        </tr>
+        <!-- ── P0 · 中 ── -->
+        <tr class="rp0">
+          <td><span class="p-badge p0">P0</span></td>
+          <td><strong>sTRX 循环质押增益向导</strong></td>
+          <td>一键循环杠杆</td>
+          <td>中大（外围 Router + 向导式前端）</td>
+          <td>🔥 高</td>
+          <td>围绕 sTRX 做向导式增益流程：Stake TRX → 借 TRX → 再 Stake。先把预期收益、健康因子和资产流向讲清楚。</td>
+        </tr>
+        <tr class="rp1">
+          <td><span class="p-badge p1">P1</span></td>
+          <td><strong>一键循环杠杆</strong></td>
+          <td>Venus Core</td>
+          <td>中大（外围 Router + 向导式前端）</td>
+          <td>中</td>
+          <td>把循环借贷从多步操作收敛为一条流程。短期先做向导，中期再评估 Router 合并执行。</td>
+        </tr>
+        <tr class="rp1">
+          <td><span class="p-badge p1">P1</span></td>
+          <td><strong>收益拆解 / APY 分层 / sTRX 规划器</strong></td>
+          <td>Venus Core · SparkLend · Morpho</td>
+          <td>中（前端+数据聚合）</td>
+          <td>中</td>
+          <td>把净收益、基础利率、激励收益和 sTRX 收益来源拆开讲清；同时加入目标收益测算，增强长期持有意愿。</td>
+        </tr>
+        <tr class="rp1">
+          <td><span class="p-badge p1">P1</span></td>
+          <td><strong>安全缓冲滑杆 / 借款规划器</strong></td>
+          <td>Aave · Compound 风险表达</td>
+          <td>小（纯前端+计算）</td>
+          <td>中</td>
+          <td>用户只需设定目标风险值，即可反算可借额度或补仓量。比直接看参数更易理解。</td>
+        </tr>
+        <!-- ── P1 · 中 ── -->
+        <tr class="rp1">
+          <td><span class="p-badge p1">P1</span></td>
+          <td><strong>治理体验升级</strong></td>
+          <td>Aave · Venus · Compound</td>
+          <td>中（前端+数据映射）</td>
+          <td>中</td>
+          <td>补齐提案 diff、对我仓位影响、相关提案筛选和历史记录，提升治理理解与参与。</td>
+        </tr>
+        <!-- ── P2 · 中 ── -->
+        <tr class="rp2">
+          <td><span class="p-badge p2">P2</span></td>
+          <td><strong>市场资产分类标签</strong></td>
+          <td>Compound V3</td>
+          <td>小（纯前端）</td>
+          <td>中</td>
+          <td>用标签和筛选降低资产识别成本，也为后续新资产扩容打基础。</td>
+        </tr>
+        <tr class="rp2">
+          <td><span class="p-badge p2">P2</span></td>
+          <td><strong>sTRX 底层节点分配权重展示</strong></td>
+          <td>Morpho · SparkLend</td>
+          <td>中（前端+数据聚合）</td>
+          <td>中</td>
+          <td>展示节点分配、APY 贡献和资金流向，回答用户“钱去了哪里”。</td>
+        </tr>
+        <tr class="rp2">
+          <td><span class="p-badge p2">P2</span></td>
+          <td><strong>批量操作向导（多步合并）</strong></td>
+          <td>Compound V3 · Aave</td>
+          <td>中大（前端向导 + 可选 Router）</td>
+          <td>中</td>
+          <td>先做多步引导，再评估合并签名，减少确认次数和 Energy 消耗。</td>
+        </tr>
+        <tr class="rp2">
+          <td><span class="p-badge p2">P2</span></td>
+          <td><strong>Insights / Data Hub 数据看板</strong></td>
+          <td>SparkLend</td>
+          <td>中大（数据中台 + 前端）</td>
+          <td>中</td>
+          <td>沉淀利用率、清算、sTRX 规模和 Energy 价格趋势，提升对外透明度。</td>
+        </tr>
+        <!-- ── P2 · 低 ── -->
+        <tr class="rp2">
+          <td><span class="p-badge p2">P2</span></td>
+          <td><strong>治理投票权委托</strong></td>
+          <td>Aave · SparkLend · Compound</td>
+          <td>中（前端+合约机制确认）</td>
+          <td>低</td>
+          <td>若合约支持，可开放委托投票，提高治理参与效率；否则继续后置。</td>
+        </tr>
+        <tr class="rp2">
+          <td><span class="p-badge p2">P2</span></td>
+          <td><strong>只读 / 多地址视图</strong></td>
+          <td>Compound V3 · Aave</td>
+          <td>中（前端账户管理扩展）</td>
+          <td>低</td>
+          <td>服务机构和团队钱包的只读、多地址汇总场景，为机构看板打底。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="infobox blue" style="margin-top:14px;">
+      <strong>一句话总结：</strong>本轮重点不是复制更多协议能力，而是把 Risk Alert、Risk Value、sTRX 和 Energy Rental 串成更顺手的闭环：先解决看不懂、做不稳、失败难恢复，再谈重协议扩张。
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== S5 ===== -->
+<div class="section" id="s5">
+  <div class="sec-head">
+    <h2><span class="sec-num">5</span>未来拓展</h2>
+    <div class="desc">这一节不展开研究细节，只保留三件事：机会是什么、现在能不能做、当前先准备什么。</div>
+  </div>
+  <div class="sec-body">
+
+  <!-- 协议层能力储备 -->
+  <div id="s5-protocol">
+    <div class="proto-divider"><hr/><span class="tag" style="font-size:13px;padding:4px 14px;background:#e8f5ee;color:#1a7a4a;border-radius:20px;font-weight:600;">协议层能力储备</span><hr/></div>
+    <div class="roadmap-note">结论：这几项都有业务价值，但都需要协议层窗口，当前只做方案储备，不进入本轮排期。</div>
+    <div class="feat-grid">
+
+      <div class="feat-card compact roadmap-card">
+        <div class="decision-row">
+          <span class="pill pill-warn">中长期储备</span>
+          <span class="mini-badge long">协议升级后</span>
+        </div>
+        <h3>E-Mode 效率模式（参考 Aave V3 / Venus）</h3>
+        <ul class="brief-list">
+          <li><strong>机会：</strong>提升 TRX/sTRX、USDT/USDD 这类高相关资产对的借款空间，是明显的 TVL 杠杆。</li>
+          <li><strong>当前结论：</strong>需要协议层支持资产分组和独立清算参数，本轮不纳入。</li>
+          <li><strong>现在先做：</strong>先准备资产分组方案和治理讨论材料，等合约升级窗口再推进。</li>
+        </ul>
+      </div>
+
+      <div class="feat-card compact roadmap-card">
+        <div class="decision-row">
+          <span class="pill pill-no">长期观察</span>
+          <span class="mini-badge long">新风险池</span>
+        </div>
+        <h3>信用贷 / 链上无抵押借贷（参考 Lista Credit）</h3>
+        <ul class="brief-list">
+          <li><strong>机会：</strong>若 TRON 链上信用体系成熟，可以显著扩大无大额抵押用户的借款覆盖面。</li>
+          <li><strong>当前结论：</strong>这不是前端优化，而是全新的风险池和信用体系建设。</li>
+          <li><strong>现在先做：</strong>持续观察链上身份与信用基础设施，并积累用户历史行为数据口径。</li>
+        </ul>
+      </div>
+
+      <div class="feat-card compact roadmap-card">
+        <div class="decision-row">
+          <span class="pill pill-warn">中长期储备</span>
+          <span class="mini-badge long">机构需求</span>
+        </div>
+        <h3>固定利率 / 固定期限借款（参考 Lista DAO）</h3>
+        <ul class="brief-list">
+          <li><strong>机会：</strong>对机构和策略用户有明显吸引力，也是和浮动利率协议拉开差异的关键能力。</li>
+          <li><strong>当前结论：</strong>前端不难，真正的门槛在于协议能否支持利率锁定。</li>
+          <li><strong>现在先做：</strong>先确认合约可行性；在此之前，可用“利率区间预警”作为过渡表达。</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 产品形态演进 -->
+  <div id="s5-product">
+    <div class="proto-divider"><hr/><span class="tag" style="font-size:13px;padding:4px 14px;background:#e8f5ee;color:#1a7a4a;border-radius:20px;font-weight:600;">产品形态演进</span><hr/></div>
+    <div class="roadmap-note">结论：先做轻量验证，再决定是否做重产品，避免一下子把团队拖进高投入、长周期项目。</div>
+    <div class="feat-grid">
+
+      <div class="feat-card compact roadmap-card">
+        <div class="decision-row">
+          <span class="pill pill-warn">中长期储备</span>
+          <span class="mini-badge long">自动化</span>
+        </div>
+        <h3>Position Manager 策略自动化（参考 Aave Pro V4）</h3>
+        <ul class="brief-list">
+          <li><strong>机会：</strong>自动化再平衡对高净值和机构用户很有价值，是从“工具平台”走向“策略平台”的一步。</li>
+          <li><strong>当前结论：</strong>需要授权执行机制和自动化基础设施支撑，当前条件还不成熟。</li>
+          <li><strong>现在先做：</strong>先做 watch-only 地址簿和多地址管理体验，作为后续自动化的铺垫。</li>
+        </ul>
+      </div>
+
+      <div class="feat-card compact roadmap-card">
+        <div class="decision-row">
+          <span class="pill pill-warn">中期验证</span>
+          <span class="mini-badge mid">先验证网页端</span>
+        </div>
+        <h3>消费级移动 App（参考 Aave App）</h3>
+        <ul class="brief-list">
+          <li><strong>机会：</strong>TRON 用户天然偏移动端，消费级 App 有望带来非专业用户增量。</li>
+          <li><strong>当前结论：</strong>完整 App 投入太大，不适合在核心闭环还没打顺时启动。</li>
+          <li><strong>现在先做：</strong>先在网页端验证收益规划器和秒级计息，再评估 PWA 或 Mini App。</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 基础设施依赖 -->
+  <div id="s5-infra">
+    <div class="proto-divider"><hr/><span class="tag" style="font-size:13px;padding:4px 14px;background:#e8f5ee;color:#1a7a4a;border-radius:20px;font-weight:600;">基础设施依赖</span><hr/></div>
+    <div class="roadmap-note">结论：这几项价值都不低，但更依赖 TRON 生态和外部条件成熟，当前只能持续跟踪。</div>
+    <div class="feat-grid">
+
+      <div class="feat-card compact roadmap-card">
+        <div class="decision-row">
+          <span class="pill pill-warn">基础设施成熟后</span>
+          <span class="mini-badge long">合规依赖</span>
+        </div>
+        <h3>机构独立界面（参考 Spark Prime）</h3>
+        <ul class="brief-list">
+          <li><strong>机会：</strong>能把现有大额用户正式产品化，并进一步吸引机构资金进入。</li>
+          <li><strong>当前结论：</strong>真正的机构界面离不开 KYC/AML 和托管合作，不是单纯前端项目。</li>
+          <li><strong>现在先做：</strong>先做机构看板和多地址风险聚合，为后续机构入口打底。</li>
+        </ul>
+      </div>
+
+      <div class="feat-card compact roadmap-card">
+        <div class="decision-row">
+          <span class="pill pill-warn">生态依赖</span>
+          <span class="mini-badge long">AA / Paymaster</span>
+        </div>
+        <h3>意图型交易 / Gasless 操作（参考 Aave Pro CoW Protocol）</h3>
+        <ul class="brief-list">
+          <li><strong>机会：</strong>如果未来能做到无 Energy 操作，会显著降低首次交易门槛。</li>
+          <li><strong>当前结论：</strong>高度依赖 TRON 的账户抽象、Paymaster 或意图求解器成熟。</li>
+          <li><strong>现在先做：</strong>先把 Energy 预估和一键租用做顺，再持续跟踪底层基础设施进展。</li>
+        </ul>
+      </div>
+
+      <div class="feat-card compact roadmap-card">
+        <div class="decision-row">
+          <span class="pill pill-no">长期观察</span>
+          <span class="mini-badge long">风险框架</span>
+        </div>
+        <h3>Morpho Blue 无许可市场创建</h3>
+        <ul class="brief-list">
+          <li><strong>机会：</strong>如果 TRON 长尾资产不断增加，无许可市场能带来更快的资产扩张和生态飞轮。</li>
+          <li><strong>当前结论：</strong>这会明显放大预言机、流动性和风控挑战，现阶段不宜贸然开放。</li>
+          <li><strong>现在先做：</strong>先把现有市场参数展示做透明，后续再考虑“待验证市场”沙盒机制。</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  </div><!-- /sec-body -->
+</div>
+</div><!-- /main -->
+</div><!-- /grid -->
+</div><!-- /wrap -->
+<script>
+(function () {
+  var navLinks = Array.from(document.querySelectorAll('.sidebar nav a[href^="#"]'));
+  var targets = navLinks.map(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    return { link: a, el: document.getElementById(id) };
+  }).filter(function (t) { return t.el; });
+
+  function update() {
+    /* 以视口顶部往下 140px 为基准线：
+       找所有 top <= 140 的锚点中，最后一个（即最靠近基准线的那个） */
+    var threshold = 140;
+    var active = targets[0];
+    for (var i = 0; i < targets.length; i++) {
+      var top = targets[i].el.getBoundingClientRect().top;
+      if (top <= threshold) {
+        active = targets[i];
+      }
+    }
+    navLinks.forEach(function (a) { a.classList.remove('active'); });
+    if (active) active.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+</script>
+<!-- Lightbox: Aave 风险提示 -->
+<div id="lb-aave-risk" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;" onclick="event.stopPropagation()">
+    <img src="assets/aave_risk_alert.png" alt="Aave 风险提示界面" onclick="event.stopPropagation()" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <div style="display:none;color:#fff;background:rgba(0,0,0,0.38);padding:10px 14px;border-radius:8px;font-size:13px;">
+      请将图片放入 `assets/aave_risk_alert.png`
+    </div>
+  </div>
+</div>
+<!-- Lightbox: Aave V3 借贷市场 -->
+<div id="lb-aave-v3-lending" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbAaveV3LendingPrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-aave-v3-lending-img" src="assets/aave_v3_emode_isolation.png" alt="Aave V3 E-Mode 与隔离模式界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbAaveV3LendingNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-aave-v3-lending-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-aave-v3-lending-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/aave_v3_emode_isolation.png','assets/aave_v3_emode_isolation2.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-aave-v3-lending-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-aave-v3-lending-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbAaveV3LendingPrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbAaveV3LendingNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-aave-v3-lending').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+<!-- Lightbox: Compound V3 借贷市场（3张图） -->
+<div id="lb-compound-v3-lending" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbCompoundV3LendingPrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-compound-v3-lending-img" src="assets/compound_v3_lending_1.png" alt="Compound V3 借贷市场界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbCompoundV3LendingNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-compound-v3-lending-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-compound-v3-lending-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-compound-v3-lending-dot-2" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/compound_v3_lending_1.png','assets/compound_v3_lending_2.png','assets/compound_v3_lending_3.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-compound-v3-lending-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-compound-v3-lending-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbCompoundV3LendingPrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbCompoundV3LendingNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-compound-v3-lending').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+<!-- Lightbox: 2.4 Dashboard 各竞品 -->
+<div id="lb-dash-aavev3" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <img src="assets/dashboard_aave_v3.png" alt="Aave V3 Dashboard" onclick="event.stopPropagation()">
+</div>
+<div id="lb-dash-aavev4" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbDashAaveV4Prev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-dash-aavev4-img" src="assets/dashboard_aave_v4.png" alt="Aave Pro V4 Dashboard" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbDashAaveV4Next()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-dash-aavev4-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-dash-aavev4-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-dash-aavev4-dot-2" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/dashboard_aave_v4.png','assets/dashboard_aave_v4_2.png','assets/dashboard_aave_v4_3.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-dash-aavev4-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-dash-aavev4-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbDashAaveV4Prev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbDashAaveV4Next = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-dash-aavev4').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+<div id="lb-dash-spark" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <img src="assets/dashboard_sparklend.png" alt="SparkLend Dashboard" onclick="event.stopPropagation()">
+</div>
+<div id="lb-dash-venus" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <img src="assets/dashboard_venus_core.png" alt="Venus Core Dashboard" onclick="event.stopPropagation()">
+</div>
+<div id="lb-dash-compound" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <img src="assets/dashboard_compound_v3.png" alt="Compound V3 Dashboard" onclick="event.stopPropagation()">
+</div>
+<div id="lb-dash-morpho" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbDashMorphoPrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-dash-morpho-img" src="assets/dashboard_morpho.png" alt="Morpho Dashboard" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbDashMorphoNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-dash-morpho-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-dash-morpho-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/dashboard_morpho.png','assets/dashboard_morpho_2.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-dash-morpho-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-dash-morpho-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbDashMorphoPrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbDashMorphoNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-dash-morpho').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+
+<!-- Lightbox: Aave 质押模块（2张图） -->
+<div id="lb-aave-staking" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbAaveStakingPrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-aave-staking-img" src="assets/aave_staking.png" alt="Aave 质押模块界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbAaveStakingNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-aave-staking-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-aave-staking-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/aave_staking.png','assets/aave_staking2.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-aave-staking-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-aave-staking-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbAaveStakingPrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbAaveStakingNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-aave-staking').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+
+<!-- Lightbox: Venus Core（4张图） -->
+<div id="lb-venus-core" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbVenusCorePrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-venus-core-img" src="assets/venus_core_looping.png" alt="Venus Core 一键循环杠杆界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbVenusCoreNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-venus-core-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-venus-core-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-venus-core-dot-2" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-venus-core-dot-3" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/venus_core_looping.png','assets/venus_core_looping2.png','assets/venus_core_looping3.png','assets/venus_core_looping4.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-venus-core-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-venus-core-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbVenusCorePrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbVenusCoreNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-venus-core').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+
+<!-- Lightbox: Venus Core 质押模块 -->
+<div id="lb-venus-core-staking" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;" onclick="event.stopPropagation()">
+    <img src="assets/venus_core_staking.png" alt="Venus Core 质押模块界面" onclick="event.stopPropagation()" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <div style="display:none;color:#fff;background:rgba(0,0,0,0.38);padding:10px 14px;border-radius:8px;font-size:13px;">
+      请将图片放入 `assets/venus_core_staking.png`
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox: Lista DAO 质押模块 -->
+<div id="lb-lista-staking" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;" onclick="event.stopPropagation()">
+    <img src="assets/lista_staking.png" alt="Lista DAO 质押模块界面" onclick="event.stopPropagation()" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <div style="display:none;color:#fff;background:rgba(0,0,0,0.38);padding:10px 14px;border-radius:8px;font-size:13px;">
+      请将图片放入 `assets/lista_staking.png`
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox: Lista DAO 治理模块 -->
+<div id="lb-lista-governance" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;" onclick="event.stopPropagation()">
+    <img src="assets/lista_governance.png" alt="Lista DAO 治理模块界面" onclick="event.stopPropagation()" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <div style="display:none;color:#fff;background:rgba(0,0,0,0.38);padding:10px 14px;border-radius:8px;font-size:13px;">
+      请将图片放入 `assets/lista_governance.png`
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox: Compound V3 治理模块（3张图） -->
+<div id="lb-compound-governance" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbCompoundGovernancePrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-compound-governance-img" src="assets/compound_governance_1.png" alt="Compound V3 治理模块界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbCompoundGovernanceNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-compound-governance-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-compound-governance-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-compound-governance-dot-2" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-compound-governance-dot-3" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/compound_governance_1.png','assets/compound_governance_2.png','assets/compound_governance_3.png','assets/compound_governance_4.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-compound-governance-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-compound-governance-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbCompoundGovernancePrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbCompoundGovernanceNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-compound-governance').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+
+<!-- Lightbox: SparkLend 质押模块（4张图） -->
+<div id="lb-spark-staking" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbSparkStakingPrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-spark-staking-img" src="assets/spark_staking_1.png" alt="SparkLend 质押模块界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbSparkStakingNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-spark-staking-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-spark-staking-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-spark-staking-dot-2" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-spark-staking-dot-3" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/spark_staking_1.png','assets/spark_staking_2.png','assets/spark_staking_3.png','assets/spark_staking_4.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-spark-staking-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-spark-staking-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbSparkStakingPrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbSparkStakingNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-spark-staking').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+
+<!-- Lightbox: Venus Flux Multiply -->
+<div id="lb-venus-flux" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <img src="assets/venus_flux_multiply.png" alt="Venus Flux Multiply 界面" onclick="event.stopPropagation()">
+</div>
+
+<!-- Lightbox: Lista Credit（3张图） -->
+<div id="lb-lista-credit" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbListaCreditPrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-lista-credit-img" src="assets/lista_credit_1.png" alt="Lista Credit 界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbListaCreditNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-lista-credit-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-lista-credit-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-lista-credit-dot-2" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/lista_credit_1.png','assets/lista_credit_2.png','assets/lista_credit_3.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-lista-credit-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-lista-credit-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbListaCreditPrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbListaCreditNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-lista-credit').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+
+<!-- Lightbox: SparkLend Data Hub（6张图） -->
+<div id="lb-spark-datahub" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbSparkDataHubPrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-spark-datahub-img" src="assets/spark_data_hub_1.png" alt="SparkLend Data Hub 界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbSparkDataHubNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span id="lb-spark-datahub-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-spark-datahub-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-spark-datahub-dot-2" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-spark-datahub-dot-3" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-spark-datahub-dot-4" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+      <span id="lb-spark-datahub-dot-5" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/spark_data_hub_1.png','assets/spark_data_hub_2.png','assets/spark_data_hub_3.png','assets/spark_data_hub_4.png','assets/spark_data_hub_5.png','assets/spark_data_hub_6.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-spark-datahub-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-spark-datahub-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbSparkDataHubPrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbSparkDataHubNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-spark-datahub').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+
+<!-- Lightbox: Lista DAO 固定利率借款（2张图） -->
+<div id="lb-lista" class="lightbox-overlay" onclick="this.classList.remove('active')">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="lbListaPrev()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">‹</button>
+      <img id="lb-lista-img" src="assets/lista_fixed_rate_1.png" alt="Lista DAO 固定利率借款界面" style="max-width:85vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+      <button onclick="lbListaNext()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:22px;padding:6px 14px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <div id="lb-lista-dots" style="display:flex;gap:8px;">
+      <span id="lb-lista-dot-0" style="width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      <span id="lb-lista-dot-1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);display:inline-block;"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var imgs = ['assets/lista_fixed_rate_1.png','assets/lista_fixed_rate_2.png'];
+  var cur = 0;
+  function update(){
+    document.getElementById('lb-lista-img').src = imgs[cur];
+    imgs.forEach(function(_,i){
+      document.getElementById('lb-lista-dot-'+i).style.background = i===cur ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  window.lbListaPrev = function(){ cur = (cur - 1 + imgs.length) % imgs.length; update(); };
+  window.lbListaNext = function(){ cur = (cur + 1) % imgs.length; update(); };
+  document.getElementById('lb-lista').addEventListener('click', function(){ cur=0; update(); });
+})();
+</script>
+
+<script>
+(function(){
+  var IMAGE_MAX_WIDTH_RATIO = 0.85;
+  var TRACK_MAX_WIDTH_RATIO = 0.94;
+  var MAX_HEIGHT_RATIO = 0.82;
+  var MIN_STAGE_WIDTH = 280;
+  var SIDE_GUTTER = 144;
+  var carousels = [];
+
+  function extractSources(overlay) {
+    var sources = [];
+    var script = overlay.nextElementSibling;
+    if (script && script.tagName === 'SCRIPT') {
+      var text = script.textContent || '';
+      var match = text.match(/var imgs = \[([\s\S]*?)\];/);
+      if (match) {
+        var re = /'([^']+)'/g;
+        var m;
+        while ((m = re.exec(match[1])) !== null) {
+          sources.push(m[1]);
+        }
+      }
+    }
+    if (!sources.length) {
+      var img = overlay.querySelector('img[id$="-img"]');
+      if (img) sources.push(img.getAttribute('src'));
+    }
+    return sources;
+  }
+
+  function loadMeta(src) {
+    return new Promise(function(resolve){
+      var image = new Image();
+      image.onload = function(){ resolve({ w: image.naturalWidth || 0, h: image.naturalHeight || 0 }); };
+      image.onerror = function(){ resolve({ w: 0, h: 0 }); };
+      image.src = src;
+    });
+  }
+
+  function getStageWidth(meta) {
+    var maxTrackW = Math.floor(window.innerWidth * TRACK_MAX_WIDTH_RATIO);
+    var maxW = Math.min(
+      Math.floor(window.innerWidth * IMAGE_MAX_WIDTH_RATIO),
+      Math.max(160, maxTrackW - SIDE_GUTTER)
+    );
+    var maxH = Math.floor(window.innerHeight * MAX_HEIGHT_RATIO);
+    var width = 0;
+    meta.forEach(function(item){
+      if (!item.w || !item.h) return;
+      var scale = Math.min(maxW / item.w, maxH / item.h, 1);
+      width = Math.max(width, Math.round(item.w * scale));
+    });
+    if (width) return width;
+    return Math.max(MIN_STAGE_WIDTH, Math.min(maxW, Math.floor(window.innerWidth * 0.55)));
+  }
+
+  function applyStage(item) {
+    if (!item.meta.length) return;
+    item.row.style.width = (getStageWidth(item.meta) + SIDE_GUTTER) + 'px';
+    item.img.style.maxWidth = '100%';
+    item.img.style.maxHeight = '82vh';
+    item.img.style.width = 'auto';
+    item.img.style.height = 'auto';
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.lightbox-overlay'), function(overlay){
+    var img = overlay.querySelector('img[id$="-img"]');
+    var buttons = overlay.querySelectorAll('button');
+    if (!img || buttons.length < 2) return;
+
+    var row = img.parentElement;
+    var wrapper = row.parentElement;
+    var dots = row.nextElementSibling;
+
+    wrapper.classList.add('lightbox-carousel');
+    row.classList.add('lightbox-carousel-track');
+    if (dots && dots.querySelector('span')) dots.classList.add('lightbox-carousel-dots');
+    if (buttons[0]) buttons[0].classList.add('lightbox-carousel-nav', 'prev');
+    if (buttons[1]) buttons[1].classList.add('lightbox-carousel-nav', 'next');
+
+    var item = { row: row, img: img, meta: [] };
+    carousels.push(item);
+
+    Promise.all(extractSources(overlay).map(loadMeta)).then(function(meta){
+      item.meta = meta;
+      applyStage(item);
+    });
+  });
+
+  window.addEventListener('resize', function(){
+    carousels.forEach(applyStage);
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
