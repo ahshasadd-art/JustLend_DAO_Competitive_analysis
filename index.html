@@ -1648,9 +1648,9 @@ tr.rp2 td:first-child { border-left: 4px solid #2d9c5a; }
   }).filter(function (t) { return t.el; });
 
   function update() {
-    /* 以视口顶部往下 140px 为基准线：
-       找所有 top <= 140 的锚点中，最后一个（即最靠近基准线的那个） */
-    var threshold = 140;
+    /* 以视口高度 45% 为基准线：
+       找所有 top <= threshold 的锚点中，最后一个（即最靠近基准线的那个） */
+    var threshold = window.innerHeight * 0.45;
     var active = targets[0];
     for (var i = 0; i < targets.length; i++) {
       var top = targets[i].el.getBoundingClientRect().top;
